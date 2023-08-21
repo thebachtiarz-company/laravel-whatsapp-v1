@@ -1,6 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TheBachtiarz\Whatsapp\Providers;
+
+use function app;
+use function assert;
+use function collect;
+use function config;
 
 class AppService
 {

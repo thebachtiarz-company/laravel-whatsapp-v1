@@ -14,7 +14,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "TheBachtiarz\\Whatsapp\\": "src/"
+            "TheBachtiarz\\WhatsApp\\": "src/"
         },
         "files": [
             "helper/helper.php"
@@ -34,7 +34,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "TheBachtiarz\\Whatsapp\\ServiceProvider"
+                "TheBachtiarz\\WhatsApp\\ServiceProvider"
             ]
         }
     },

@@ -1,10 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TheBachtiarz\Whatsapp;
 
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-use TheBachtiarz\Whatsapp\Interfaces\Configs\WhatsappConfigInterface;
+use TheBachtiarz\Whatsapp\Interfaces\Configs\WhatsAppConfigInterface;
 use TheBachtiarz\Whatsapp\Providers\AppService;
+
+use function app;
+use function assert;
+use function config_path;
 
 class ServiceProvider extends LaravelServiceProvider
 {
@@ -18,7 +24,7 @@ class ServiceProvider extends LaravelServiceProvider
 
         $appService->registerConfig();
 
-        if (!$this->app->runningInConsole()) {
+        if (! $this->app->runningInConsole()) {
             return;
         }
 
@@ -30,11 +36,11 @@ class ServiceProvider extends LaravelServiceProvider
      */
     public function boot(): void
     {
-        if (!app()->runningInConsole()) {
+        if (! app()->runningInConsole()) {
             return;
         }
 
-        $configName  = WhatsappConfigInterface::CONFIG_NAME;
+        $configName  = WhatsAppConfigInterface::CONFIG_NAME;
         $publishName = 'thebachtiarz-whatsapp';
 
         $this->publishes([__DIR__ . "/../config/$configName.php" => config_path("$configName.php")], "$publishName-config");
