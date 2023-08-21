@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TheBachtiarz\Whatsapp\Providers;
 
+use TheBachtiarz\WhatsApp\Console\Commands\MessagePostChatCommand;
+
 use function app;
 use function assert;
 use function collect;
@@ -21,7 +23,7 @@ class AppService
     /**
      * Available command modules
      */
-    public const COMMANDS = [];
+    public const COMMANDS = [MessagePostChatCommand::class];
 
     // ? Public Methods
 
