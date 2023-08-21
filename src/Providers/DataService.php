@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace TheBachtiarz\Whatsapp\Providers;
+namespace TheBachtiarz\WhatsApp\Providers;
 
 use TheBachtiarz\Base\BaseConfigInterface;
-use TheBachtiarz\Whatsapp\Interfaces\Configs\WhatsAppConfigInterface;
+use TheBachtiarz\WhatsApp\Interfaces\Configs\WhatsAppConfigInterface;
 
 use function array_merge;
 use function tbbaseconfig;

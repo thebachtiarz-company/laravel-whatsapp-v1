@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace TheBachtiarz\Whatsapp\Providers;
+namespace TheBachtiarz\WhatsApp\Providers;
 
 use TheBachtiarz\WhatsApp\Console\Commands\MessagePostChatCommand;
 

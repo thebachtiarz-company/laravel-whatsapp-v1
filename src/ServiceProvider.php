@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace TheBachtiarz\Whatsapp;
+namespace TheBachtiarz\WhatsApp;
 
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-use TheBachtiarz\Whatsapp\Interfaces\Configs\WhatsAppConfigInterface;
-use TheBachtiarz\Whatsapp\Providers\AppService;
+use TheBachtiarz\WhatsApp\Interfaces\Configs\WhatsAppConfigInterface;
+use TheBachtiarz\WhatsApp\Providers\AppService;
 
 use function app;
 use function assert;
