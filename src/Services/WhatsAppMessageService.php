@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TheBachtiarz\WhatsApp\Services;
 
+use Exception;
 use TheBachtiarz\Base\App\Services\AbstractService;
 use TheBachtiarz\WhatsApp\Libraries\CurlWhatsappLibrary;
 use Throwable;
@@ -55,14 +56,17 @@ class WhatsAppMessageService extends AbstractService
                 'body' => $this->getMessage(),
             ];
 
-            $this->curlWhatsappLibrary->execute(CurlWhatsappLibrary::MESSAGES_POST_CHAT, $params);
+            $process = $this->curlWhatsappLibrary->execute(CurlWhatsappLibrary::MESSAGES_POST_CHAT, $params);
+
+            if ($process->getStatus() !== 'success') {
+                throw new Exception(@$process->getMessage() ?? 'error');
+            }
 
             $this->setResponseData(message: 'Sending OK', data: '', httpCode: 200);
 
             return $this->serviceResult(status: true, message: 'Sending OK', data: '');
         } catch (Throwable $th) {
             $this->log(log: $th, channel: 'curl');
-
             $this->setResponseData(message: $th->getMessage());
 
             return $this->serviceResult(message: $th->getMessage());

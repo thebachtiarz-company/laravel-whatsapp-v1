@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TheBachtiarz\WhatsApp\Libraries;
 
+use Exception;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http as CURL;
@@ -15,7 +16,9 @@ use Throwable;
 use function array_merge;
 use function assert;
 use function count;
+use function is_array;
 use function sprintf;
+use function tbwaconfig;
 
 abstract class AbstractWhatsappLibrary extends AbstractCurl
 {
@@ -68,12 +71,21 @@ abstract class AbstractWhatsappLibrary extends AbstractCurl
         assert($result instanceof CurlResponseInterface);
 
         try {
-            $response = $response->json();
+            $responseResult = $response->json();
 
-            $result = new CurlResponse($response);
+            $result = is_array(@$responseResult[0]) ? $responseResult[0] : $responseResult;
+
+            if (@$result['sent'] !== 'true') {
+                throw new Exception(@$result['message'] ?? 'Something went wrong with whatsapp API');
+            }
+
+            $responseReturn['data']    = $result;
+            $responseReturn['status']  = 'success';
+            $responseReturn['message'] = 'Message sent';
+
+            $result = new CurlResponse($responseReturn);
         } catch (Throwable $th) {
             $this->logInstance()->log($th, 'curl');
-
             $result->setMessage($th->getMessage());
         } finally {
             // $this->logInstance()->log(json_encode($result->toArray()), 'curl');
