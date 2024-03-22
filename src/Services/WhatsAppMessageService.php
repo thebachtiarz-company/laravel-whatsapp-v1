@@ -16,15 +16,11 @@ class WhatsAppMessageService extends AbstractService
 {
     /**
      * Groups ids
-     *
-     * @var array
      */
     protected array $groupIds = [];
 
     /**
      * Person ids
-     *
-     * @var array
      */
     protected array $personIds = [];
 
@@ -45,8 +41,6 @@ class WhatsAppMessageService extends AbstractService
 
     /**
      * Send whatsapp message
-     *
-     * @return array
      */
     public function sendMessage(): array
     {

@@ -14,8 +14,6 @@ class DataService
 {
     /**
      * List of config who need to registered into current project
-     *
-     * @return array
      */
     public function registerConfig(): array
     {

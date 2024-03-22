@@ -48,16 +48,16 @@ abstract class AbstractWhatsappLibrary extends AbstractCurl
     {
         return sprintf(
             '%s/%s/%s',
-            tbwaconfig('api_base_url'),
-            tbwaconfig('instance_id'),
+            tbwaconfig(keyName: 'api_base_url', useOrigin: false),
+            tbwaconfig(keyName: 'instance_id', useOrigin: false),
             $this->getSubUrl(),
         );
     }
 
     protected function bodyDataResolver(): array
     {
-        $this->body['token']    = tbwaconfig('token');
-        $this->body['priority'] = tbwaconfig('message_priority');
+        $this->body['token']    = tbwaconfig(keyName: 'token', useOrigin: false);
+        $this->body['priority'] = tbwaconfig(keyName: 'message_priority', useOrigin: false);
 
         return $this->body;
     }
